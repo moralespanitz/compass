@@ -18,6 +18,7 @@ SQL_DIR = os.path.join(PROJECT_ROOT, 'job')
 # Plot output paths
 CARDINALITY_COMPARISON_PLOT = os.path.join(PLOTS_DIR, 'cardinality_comparison.png')
 CARDINALITY_RATIO_PLOT = os.path.join(PLOTS_DIR, 'cardinality_ratio.png')
+JOIN_GROUPS_PLOT = os.path.join(PLOTS_DIR, 'join_groups.png')
 
 # Create directories if they don't exist
 os.makedirs(DATA_DIR, exist_ok=True)

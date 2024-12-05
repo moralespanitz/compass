@@ -2,11 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from collections import defaultdict
 
-from .config import (
+from config import (
     COMPASS_RESULTS as compass_filepath,
     POSTGRES_RESULTS as postgres_filepath,
     CARDINALITY_COMPARISON_PLOT,
-    CARDINALITY_RATIO_PLOT
+    CARDINALITY_RATIO_PLOT,
+    JOIN_GROUPS_PLOT
 )
 
 def read_intermediate_rows(filename):
@@ -188,6 +189,23 @@ def plot_comparison(compass_rows, postgres_rows, output_file):
     # Save ratio plot
     plt.savefig(CARDINALITY_RATIO_PLOT)
     print(f"Ratio plot saved as {CARDINALITY_RATIO_PLOT}")
+def export_all_processed_data(filepath):
+    compass_rows = read_intermediate_rows(compass_filepath)
+    postgres_rows = read_intermediate_rows(postgres_filepath)
+    
+    data = []
+    for query_name in compass_rows:
+        compass_value = compass_rows.get(query_name, 0)
+        postgres_value = postgres_rows.get(query_name, 0)
+        difference = postgres_value - compass_value
+        ratio = round(postgres_value / compass_value, 2) if compass_value != 0 else float('inf')
+        data.append((query_name, compass_value, postgres_value, difference, ratio))
+
+    with open(filepath, 'w') as f:
+        f.write("Query                  Compass       Postgres     Difference     Ratio\n")
+        f.write("----------------------------------------------------------------------\n")
+        for query, compass, postgres, difference, ratio in data:
+            f.write(f"{query:<20} {compass:<12} {postgres:<12} {difference:<12} {ratio:<5}\n")
 
 def main():
     compass_rows = read_intermediate_rows(compass_filepath)
@@ -211,7 +229,8 @@ def main():
     
     # Generate plots
     plot_comparison(compass_rows, postgres_rows, CARDINALITY_COMPARISON_PLOT)
-    plot_comparison(compass_rows, postgres_rows, CARDINALITY_RATIO_PLOT)
+    plot_join_groups(compass_rows, postgres_rows)
+    export_all_processed_data('../data/intermediate_rows.txt')
 
 if __name__ == "__main__":
     main()
