@@ -10,6 +10,7 @@
 #include <regex>
 #include <filesystem>
 #include <fstream>
+#include <chrono>
 
 // Requiere C++17 para usar std::filesystem
 
@@ -276,8 +277,12 @@ int main(int argc, char* argv[]) {
             // Crear un conjunto para evitar construir el sketch de la misma tabla varias veces
             std::unordered_set<std::string> processedTables;
 
+            int totalIntermediateRows = 0;
+
             try {
-                for (auto& join : joins) {
+                auto start = std::chrono::high_resolution_clock::now();
+                for (size_t i = 0; i < joins.size(); ++i) {
+                    const auto& join = joins[i];
                     if (processedTables.find(join.first) == processedTables.end()) {
                         graph.tableSketches[join.first] = buildSketchFromTable(conn, join.first, 100, 500);
                         processedTables.insert(join.first);
@@ -286,26 +291,43 @@ int main(int argc, char* argv[]) {
                         graph.tableSketches[join.second] = buildSketchFromTable(conn, join.second, 100, 500);
                         processedTables.insert(join.second);
                     }
+
+                    // Calculate intermediate rows for each join except the last one
+                    if (i < joins.size() - 1) {
+                        int intermediateRows = graph.tableSketches[join.first].dotProduct(graph.tableSketches[join.second]);
+                        totalIntermediateRows += intermediateRows;
+                    }
                 }
+                auto end = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> duration = end - start;
+                std::cout << "Execution time for building sketches: " << duration.count() << " seconds" << std::endl;
             } catch (const std::exception& e) {
                 std::cerr << "Error al construir sketches para el archivo " << fileName << ": " << e.what() << std::endl;
                 outputFile << fileName << ", Error building sketches, " << joins.size() << std::endl;
                 continue;
             }
 
+            // Write the total intermediate rows to the output file
+            outputFile << fileName << ", Total Intermediate Rows: " << totalIntermediateRows << std::endl;
+
             // Generar el plan de ejecución de joins
             std::string joinPlan;
             try {
+                auto start = std::chrono::high_resolution_clock::now();
                 joinPlan = buildJoinPlan(graph);
+                auto end = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> duration = end - start;
+                std::cout << "Execution time for building join plan: " << duration.count() << " seconds" << std::endl;
+                // Escribir los resultados en el archivo de salida
+                outputFile << fileName << ", " << "\"" << joinPlan << "\"" << ", " << joins.size() << ", " << duration.count() << " seconds" << std::endl;
+                std::cout << "Plan de join generado para " << fileName << ": " << joinPlan << std::endl;
             } catch (const std::exception& e) {
                 std::cerr << "Error al construir el plan de join para el archivo " << fileName << ": " << e.what() << std::endl;
                 outputFile << fileName << ", Error building join plan, " << joins.size() << std::endl;
                 continue;
             }
 
-            // Escribir los resultados en el archivo de salida
-            outputFile << fileName << ", \"" << joinPlan << "\", " << joins.size() << std::endl;
-            std::cout << "Plan de join generado para " << fileName << ": " << joinPlan << std::endl;
+           
         }
     }
 

@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <exception>
+#include <chrono>
 
 // Requiere C++17 para usar std::filesystem
 
@@ -31,6 +32,7 @@ std::string getJoinPlanJSON(PGconn *conn, const std::string &query) {
 struct JoinInfo {
     std::string plan;
     int joinCount;
+    int totalIntermediateRows;
 };
 
 // Función para analizar manualmente el JSON y construir el plan de joins
@@ -38,10 +40,13 @@ JoinInfo parseJSONPlan(const std::string &jsonPlan) {
     // Expresiones regulares para detectar los nombres de las tablas y los operadores de join
     std::regex seqScanRegex("\"Relation Name\":\\s*\"(\\w+)\"", std::regex_constants::icase);
     std::regex joinRegex("\"Node Type\":\\s*\"(Merge Join|Nested Loop|Hash Join)\"", std::regex_constants::icase);
+    std::regex rowsRegex("\\\"Plan Rows\\\":\\s*(\\d+)", std::regex_constants::icase);
     std::smatch match;
 
     std::stack<std::string> joinStack;
     int numJoins = 0;
+    int totalIntermediateRows = 0;
+    int joinIndex = 0;
     auto begin = jsonPlan.cbegin();
     auto end = jsonPlan.cend();
 
@@ -53,7 +58,7 @@ JoinInfo parseJSONPlan(const std::string &jsonPlan) {
         begin = match.suffix().first;
     }
 
-    // Reiniciar el análisis para procesar los operadores de join
+    // Reiniciar el análisis para procesar los operadores de join y contar las filas
     begin = jsonPlan.cbegin();
     while (std::regex_search(begin, end, match, joinRegex)) {
         if (joinStack.size() >= 2) {
@@ -65,6 +70,12 @@ JoinInfo parseJSONPlan(const std::string &jsonPlan) {
             std::string combined = "(" + left + " ⨝ " + right + ")";
             joinStack.push(combined);
             numJoins++; // Incrementar el contador de joins
+
+            // Extraer el número de filas del plan de ejecución
+            if (std::regex_search(begin, end, match, rowsRegex) && joinIndex < numJoins - 1) {
+                totalIntermediateRows += std::stoi(match[1]);
+            }
+            joinIndex++;
         }
         begin = match.suffix().first;
     }
@@ -72,6 +83,7 @@ JoinInfo parseJSONPlan(const std::string &jsonPlan) {
     JoinInfo result;
     result.plan = joinStack.empty() ? "Error: No se pudo construir el plan." : joinStack.top();
     result.joinCount = numJoins;
+    result.totalIntermediateRows = totalIntermediateRows;
     return result;
 }
 
@@ -131,8 +143,12 @@ int main(int argc, char* argv[]) {
                 }
 
                 try {
+                    auto start = std::chrono::high_resolution_clock::now();
                     // Obtener el plan JSON
                     std::string jsonPlan = getJoinPlanJSON(conn, query);
+                    auto end = std::chrono::high_resolution_clock::now();
+                    std::chrono::duration<double> duration = end - start;
+                    std::cout << "Execution time for getting join plan JSON: " << duration.count() << " seconds" << std::endl;
 
                     // Analizar el JSON para construir el plan de joins
                     JoinInfo joinInfo = parseJSONPlan(jsonPlan);
@@ -146,7 +162,7 @@ int main(int argc, char* argv[]) {
                     }
 
                     // Escribir los resultados en el archivo de salida
-                    outputFile << fileName << ", \"" << formattedPlan << "\", " << joinInfo.joinCount << "\n";
+                    outputFile << fileName << ", \"" << formattedPlan << "\", " << joinInfo.joinCount << ", " << joinInfo.totalIntermediateRows << ", " << duration.count() << " seconds\n";
                     std::cout << "Plan de join generado para " << fileName << ": " << formattedPlan 
                              << " (Número de joins: " << joinInfo.joinCount << ")" << std::endl;
                 } catch (const std::exception &e) {
