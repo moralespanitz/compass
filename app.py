@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import tempfile
 import os
+import graphviz
 
 sql_files = [f for f in os.listdir('/Users/moralespanitz/me/undergraduate/ads/final/compass/job') if f.endswith('.sql')]
 
@@ -23,7 +24,8 @@ def analyze_sql(query, sql_file):
         plot_cardinality_comparison(cardinality_data),
         plot_runtime_comparison(runtime_data),
         plot_l1_distance(l1_distances, table_counts),
-        plot_winning_analysis()
+        plot_winning_analysis(),
+        visualize_join_plans(sql_file)
     ]
 
 def plot_cardinality_comparison(data):
@@ -71,6 +73,37 @@ def save_plot():
     plt.close()
     return temp_file.name
 
+def visualize_join_plans(query):
+    compass_plan = {
+        '1a.sql': "(ci ⨝ n ⨝ (mk ⨝ t ⨝ k))",
+        # Add other queries as needed
+    }
+    postgres_plan = {
+        '1a.sql': "(ci ⨝ n ⨝ (mk ⨝ t ⨝ k))",
+        # Add other queries as needed
+    }
+
+    compass_graph = graphviz.Digraph('COMPASS')
+    postgres_graph = graphviz.Digraph('Postgres')
+
+    # Example for 1a.sql
+    if query == '1a.sql':
+        compass_graph.edge('ci', 'n')
+        compass_graph.edge('n', 'mk')
+        compass_graph.edge('mk', 't')
+        compass_graph.edge('t', 'k')
+
+        postgres_graph.edge('ci', 'n')
+        postgres_graph.edge('n', 'mk')
+        postgres_graph.edge('mk', 't')
+        postgres_graph.edge('t', 'k')
+
+    # Render the graphs
+    compass_graph.render('compass_plan', format='png', cleanup=True)
+    postgres_graph.render('postgres_plan', format='png', cleanup=True)
+
+    return ['compass_plan.png', 'postgres_plan.png']
+
 with gr.Blocks() as interface:
     gr.Markdown("# SQL Query Performance Analyzer")
     with gr.Row():
@@ -92,10 +125,16 @@ with gr.Blocks() as interface:
         with gr.Column():
             win_plot = gr.Image(label="Winning Queries Analysis")
             
+    with gr.Row():
+        with gr.Column():
+            compass_plan = gr.Image(label="COMPASS Join Plan")
+        with gr.Column():
+            postgres_plan = gr.Image(label="Postgres Join Plan")
+            
     submit_btn.click(
         analyze_sql,
         inputs=[file_input],
-        outputs=[card_plot, runtime_plot, l1_plot, win_plot]
+        outputs=[card_plot, runtime_plot, l1_plot, win_plot, compass_plan, postgres_plan]
     )
 
 if __name__ == "__main__":
