@@ -1,0 +1,749 @@
+L1 Distance Results between Compass and PostgreSQL Query Plans
+=====================================================
+
+SQL File: 10a.sql
+-----------------
+Tables (7): company_name, char_name, role_type, cast_info, title, company_type, movie_companies
+Compass Plan:  (company_name ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ (title ⨝ (company_type ⨝ movie_companies))))
+Postgres Plan: (movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (company_name ⨝ (title ⨝ (char_name ⨝ company_type))))))
+L1 Distance:   2.2857
+
+SQL File: 10b.sql
+-----------------
+Tables (7): company_name, char_name, role_type, cast_info, title, company_type, movie_companies
+Compass Plan:  (company_name ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ (title ⨝ (company_type ⨝ movie_companies))))
+Postgres Plan: (cast_info ⨝ (movie_companies ⨝ (company_name ⨝ (role_type ⨝ (title ⨝ (char_name ⨝ company_type))))))
+L1 Distance:   2.2857
+
+SQL File: 10c.sql
+-----------------
+Tables (7): company_name, char_name, role_type, cast_info, title, company_type, movie_companies
+Compass Plan:  (company_name ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ (title ⨝ (company_type ⨝ movie_companies))))
+Postgres Plan: (cast_info ⨝ (role_type ⨝ (title ⨝ (movie_companies ⨝ (company_name ⨝ (company_type ⨝ char_name))))))
+L1 Distance:   2.5714
+
+SQL File: 11a.sql
+-----------------
+Tables (8): link_type, movie_link, title, movie_keyword, keyword, movie_companies, company_type, company_name
+Compass Plan:  ((((link_type ⨝ movie_link) ⨝ title) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ company_type)) ⨝ company_name))) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ company_type)) ⨝ company_name)))
+Postgres Plan: (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (title ⨝ (movie_link ⨝ (link_type ⨝ company_name)))))))
+L1 Distance:   3.0000
+
+SQL File: 11b.sql
+-----------------
+Tables (8): link_type, movie_link, title, movie_keyword, keyword, movie_companies, company_type, company_name
+Compass Plan:  ((((link_type ⨝ movie_link) ⨝ title) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ company_type)) ⨝ company_name))) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ company_type)) ⨝ company_name)))
+Postgres Plan: (title ⨝ (movie_companies ⨝ (movie_keyword ⨝ (movie_link ⨝ (link_type ⨝ (company_name ⨝ (company_type ⨝ keyword)))))))
+L1 Distance:   2.2500
+
+SQL File: 11c.sql
+-----------------
+Tables (8): link_type, movie_link, title, movie_keyword, keyword, movie_companies, company_type, company_name
+Compass Plan:  ((((link_type ⨝ movie_link) ⨝ title) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ company_type)) ⨝ company_name))) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ company_type)) ⨝ company_name)))
+Postgres Plan: (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (company_name ⨝ (title ⨝ (movie_link ⨝ link_type)))))))
+L1 Distance:   3.7500
+
+SQL File: 11d.sql
+-----------------
+Tables (8): link_type, movie_link, title, movie_keyword, keyword, movie_companies, company_type, company_name
+Compass Plan:  ((((link_type ⨝ movie_link) ⨝ title) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ company_type)) ⨝ company_name))) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (((((link_type ⨝ movie_link) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ company_type)) ⨝ company_name)))
+Postgres Plan: (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (movie_link ⨝ (title ⨝ (link_type ⨝ (company_type ⨝ company_name)))))))
+L1 Distance:   2.2500
+
+SQL File: 12a.sql
+-----------------
+Tables (7): title, movie_info_idx, info_type, company_name, company_type, movie_companies, movie_info
+Compass Plan:  (((title ⨝ (movie_info_idx ⨝ info_type)) ⨝ ((company_name ⨝ ((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type)))) ⨝ (((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type))) ⨝ (title ⨝ (movie_info_idx ⨝ info_type))))) ⨝ (((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type))) ⨝ (title ⨝ (movie_info_idx ⨝ info_type))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_type ⨝ (company_name ⨝ title)))))))
+L1 Distance:   2.8571
+
+SQL File: 12b.sql
+-----------------
+Tables (7): title, movie_info_idx, info_type, company_name, company_type, movie_companies, movie_info
+Compass Plan:  (((title ⨝ (movie_info_idx ⨝ info_type)) ⨝ ((company_name ⨝ ((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type)))) ⨝ (((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type))) ⨝ (title ⨝ (movie_info_idx ⨝ info_type))))) ⨝ (((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type))) ⨝ (title ⨝ (movie_info_idx ⨝ info_type))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (company_name ⨝ company_type)))))))
+L1 Distance:   2.8571
+
+SQL File: 12c.sql
+-----------------
+Tables (7): title, movie_info_idx, info_type, company_name, company_type, movie_companies, movie_info
+Compass Plan:  (((title ⨝ (movie_info_idx ⨝ info_type)) ⨝ ((company_name ⨝ ((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type)))) ⨝ (((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type))) ⨝ (title ⨝ (movie_info_idx ⨝ info_type))))) ⨝ (((company_type ⨝ movie_companies) ⨝ (movie_info ⨝ (movie_info_idx ⨝ info_type))) ⨝ (title ⨝ (movie_info_idx ⨝ info_type))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_type ⨝ (company_name ⨝ title)))))))
+L1 Distance:   2.8571
+
+SQL File: 13a.sql
+-----------------
+Tables (8): info_type, movie_info_idx, movie_info, kind_type, title, company_type, movie_companies, company_name
+Compass Plan:  ((((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)))) ⨝ ((info_type ⨝ movie_info_idx) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title))))) ⨝ (company_name ⨝ ((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title))))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_type ⨝ company_name))))))))
+L1 Distance:   1.7500
+
+SQL File: 13b.sql
+-----------------
+Tables (8): info_type, movie_info_idx, movie_info, kind_type, title, company_type, movie_companies, company_name
+Compass Plan:  ((((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)))) ⨝ ((info_type ⨝ movie_info_idx) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title))))) ⨝ (company_name ⨝ ((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title))))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ company_type))))))))
+L1 Distance:   2.0000
+
+SQL File: 13c.sql
+-----------------
+Tables (8): info_type, movie_info_idx, movie_info, kind_type, title, company_type, movie_companies, company_name
+Compass Plan:  ((((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)))) ⨝ ((info_type ⨝ movie_info_idx) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title))))) ⨝ (company_name ⨝ ((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title))))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ company_type))))))))
+L1 Distance:   2.0000
+
+SQL File: 13d.sql
+-----------------
+Tables (8): info_type, movie_info_idx, movie_info, kind_type, title, company_type, movie_companies, company_name
+Compass Plan:  ((((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)))) ⨝ ((info_type ⨝ movie_info_idx) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title))))) ⨝ (company_name ⨝ ((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title)) ⨝ ((company_type ⨝ movie_companies) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (kind_type ⨝ title))))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_type ⨝ company_name))))))))
+L1 Distance:   1.7500
+
+SQL File: 14a.sql
+-----------------
+Tables (7): kind_type, title, info_type, movie_info, movie_info_idx, keyword, movie_keyword
+Compass Plan:  ((((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ (((keyword ⨝ movie_keyword) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))
+Postgres Plan: (movie_keyword ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ keyword)))))))
+L1 Distance:   2.5714
+
+SQL File: 14b.sql
+-----------------
+Tables (7): kind_type, title, info_type, movie_info, movie_info_idx, keyword, movie_keyword
+Compass Plan:  ((((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ (((keyword ⨝ movie_keyword) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))
+Postgres Plan: (movie_keyword ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (keyword ⨝ kind_type)))))))
+L1 Distance:   2.5714
+
+SQL File: 14c.sql
+-----------------
+Tables (7): kind_type, title, info_type, movie_info, movie_info_idx, keyword, movie_keyword
+Compass Plan:  ((((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ (((keyword ⨝ movie_keyword) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))
+Postgres Plan: (movie_keyword ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ keyword)))))))
+L1 Distance:   2.5714
+
+SQL File: 15a.sql
+-----------------
+Tables (9): keyword, title, movie_keyword, company_type, movie_companies, info_type, movie_info, aka_title, company_name
+Compass Plan:  (((keyword ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title))))) ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ (company_name ⨝ ((((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title))))))
+Postgres Plan: (aka_title ⨝ (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (company_name ⨝ (company_type ⨝ (title ⨝ keyword))))))))
+L1 Distance:   3.7778
+
+SQL File: 15b.sql
+-----------------
+Tables (9): keyword, title, movie_keyword, company_type, movie_companies, info_type, movie_info, aka_title, company_name
+Compass Plan:  (((keyword ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title))))) ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ (company_name ⨝ ((((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (aka_title ⨝ (movie_info ⨝ (info_type ⨝ (company_name ⨝ (company_type ⨝ (title ⨝ keyword))))))))
+L1 Distance:   3.7778
+
+SQL File: 15c.sql
+-----------------
+Tables (9): keyword, title, movie_keyword, company_type, movie_companies, info_type, movie_info, aka_title, company_name
+Compass Plan:  (((keyword ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title))))) ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ (company_name ⨝ ((((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title))))))
+Postgres Plan: (aka_title ⨝ (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (company_name ⨝ (title ⨝ (company_type ⨝ keyword))))))))
+L1 Distance:   3.7778
+
+SQL File: 15d.sql
+-----------------
+Tables (9): keyword, title, movie_keyword, company_type, movie_companies, info_type, movie_info, aka_title, company_name
+Compass Plan:  (((keyword ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title))))) ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ (company_name ⨝ ((((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ (((title ⨝ (movie_keyword ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)))) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title)) ⨝ ((company_type ⨝ movie_companies) ⨝ ((info_type ⨝ movie_info) ⨝ aka_title))))))
+Postgres Plan: (aka_title ⨝ (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (title ⨝ (company_name ⨝ (company_type ⨝ keyword))))))))
+L1 Distance:   3.5556
+
+SQL File: 16a.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 16b.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 16c.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 16d.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 17a.sql
+-----------------
+Tables (7): name, cast_info, title, movie_keyword, keyword, movie_companies, company_name
+Compass Plan:  ((((name ⨝ cast_info) ⨝ title) ⨝ (((((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))) ⨝ company_name)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword))))
+Postgres Plan: (cast_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_name ⨝ name))))))
+L1 Distance:   2.2857
+
+SQL File: 17b.sql
+-----------------
+Tables (7): name, cast_info, title, movie_keyword, keyword, movie_companies, company_name
+Compass Plan:  ((((name ⨝ cast_info) ⨝ title) ⨝ (((((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))) ⨝ company_name)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword))))
+Postgres Plan: (movie_companies ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (name ⨝ (company_name ⨝ title))))))
+L1 Distance:   2.2857
+
+SQL File: 17c.sql
+-----------------
+Tables (7): name, cast_info, title, movie_keyword, keyword, movie_companies, company_name
+Compass Plan:  ((((name ⨝ cast_info) ⨝ title) ⨝ (((((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))) ⨝ company_name)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword))))
+Postgres Plan: (movie_companies ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (name ⨝ (company_name ⨝ title))))))
+L1 Distance:   2.2857
+
+SQL File: 17d.sql
+-----------------
+Tables (7): name, cast_info, title, movie_keyword, keyword, movie_companies, company_name
+Compass Plan:  ((((name ⨝ cast_info) ⨝ title) ⨝ (((((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))) ⨝ company_name)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword))))
+Postgres Plan: (movie_companies ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (name ⨝ (company_name ⨝ title))))))
+L1 Distance:   2.2857
+
+SQL File: 17e.sql
+-----------------
+Tables (7): name, cast_info, title, movie_keyword, keyword, movie_companies, company_name
+Compass Plan:  ((((name ⨝ cast_info) ⨝ title) ⨝ (((((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))) ⨝ company_name)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword))))
+Postgres Plan: (cast_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_name ⨝ name))))))
+L1 Distance:   2.2857
+
+SQL File: 17f.sql
+-----------------
+Tables (7): name, cast_info, title, movie_keyword, keyword, movie_companies, company_name
+Compass Plan:  ((((name ⨝ cast_info) ⨝ title) ⨝ (((((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))) ⨝ company_name)) ⨝ (movie_companies ⨝ (((name ⨝ cast_info) ⨝ title) ⨝ (movie_keyword ⨝ keyword))))
+Postgres Plan: (movie_companies ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (name ⨝ company_name))))))
+L1 Distance:   2.0000
+
+SQL File: 18a.sql
+-----------------
+Tables (6): title, info_type, movie_info, movie_info_idx, name, cast_info
+Compass Plan:  (((title ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ ((name ⨝ (cast_info ⨝ (title ⨝ (info_type ⨝ movie_info)))) ⨝ ((cast_info ⨝ (title ⨝ (info_type ⨝ movie_info))) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))
+Postgres Plan: (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ title))))))
+L1 Distance:   2.0000
+
+SQL File: 18b.sql
+-----------------
+Tables (6): title, info_type, movie_info, movie_info_idx, name, cast_info
+Compass Plan:  (((title ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ ((name ⨝ (cast_info ⨝ (title ⨝ (info_type ⨝ movie_info)))) ⨝ ((cast_info ⨝ (title ⨝ (info_type ⨝ movie_info))) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))
+Postgres Plan: (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ title))))))
+L1 Distance:   2.0000
+
+SQL File: 18c.sql
+-----------------
+Tables (6): title, info_type, movie_info, movie_info_idx, name, cast_info
+Compass Plan:  (((title ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ ((name ⨝ (cast_info ⨝ (title ⨝ (info_type ⨝ movie_info)))) ⨝ ((cast_info ⨝ (title ⨝ (info_type ⨝ movie_info))) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))
+Postgres Plan: (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ title))))))
+L1 Distance:   2.0000
+
+SQL File: 19a.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 19b.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 19c.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 19d.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 1a.sql
+----------------
+Tables (5): title, company_type, movie_companies, info_type, movie_info_idx
+Compass Plan:  ((title ⨝ ((company_type ⨝ movie_companies) ⨝ (info_type ⨝ movie_info_idx))) ⨝ ((company_type ⨝ movie_companies) ⨝ (info_type ⨝ movie_info_idx)))
+Postgres Plan: (movie_info_idx ⨝ (info_type ⨝ (movie_companies ⨝ (company_type ⨝ title))))
+L1 Distance:   2.4000
+
+SQL File: 1b.sql
+----------------
+Tables (5): title, company_type, movie_companies, info_type, movie_info_idx
+Compass Plan:  ((title ⨝ ((company_type ⨝ movie_companies) ⨝ (info_type ⨝ movie_info_idx))) ⨝ ((company_type ⨝ movie_companies) ⨝ (info_type ⨝ movie_info_idx)))
+Postgres Plan: (movie_companies ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_type ⨝ title))))
+L1 Distance:   2.4000
+
+SQL File: 1c.sql
+----------------
+Tables (5): title, company_type, movie_companies, info_type, movie_info_idx
+Compass Plan:  ((title ⨝ ((company_type ⨝ movie_companies) ⨝ (info_type ⨝ movie_info_idx))) ⨝ ((company_type ⨝ movie_companies) ⨝ (info_type ⨝ movie_info_idx)))
+Postgres Plan: (movie_info_idx ⨝ (info_type ⨝ (movie_companies ⨝ (company_type ⨝ title))))
+L1 Distance:   2.4000
+
+SQL File: 1d.sql
+----------------
+Tables (5): title, company_type, movie_companies, info_type, movie_info_idx
+Compass Plan:  ((title ⨝ ((company_type ⨝ movie_companies) ⨝ (info_type ⨝ movie_info_idx))) ⨝ ((company_type ⨝ movie_companies) ⨝ (info_type ⨝ movie_info_idx)))
+Postgres Plan: (movie_companies ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_type ⨝ title))))
+L1 Distance:   2.4000
+
+SQL File: 20a.sql
+-----------------
+Tables (9): kind_type, title, comp_cast_type, complete_cast, keyword, movie_keyword, char_name, cast_info, name
+Compass Plan:  ((((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((keyword ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((name ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((name ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (kind_type ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (char_name ⨝ name)))))))))
+L1 Distance:   2.8889
+
+SQL File: 20b.sql
+-----------------
+Tables (9): kind_type, title, comp_cast_type, complete_cast, keyword, movie_keyword, char_name, cast_info, name
+Compass Plan:  ((((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((keyword ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((name ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((name ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (kind_type ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (name ⨝ char_name)))))))))
+L1 Distance:   3.1111
+
+SQL File: 20c.sql
+-----------------
+Tables (9): kind_type, title, comp_cast_type, complete_cast, keyword, movie_keyword, char_name, cast_info, name
+Compass Plan:  ((((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((keyword ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((name ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((name ⨝ (movie_keyword ⨝ (char_name ⨝ cast_info))) ⨝ ((kind_type ⨝ title) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (kind_type ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (char_name ⨝ name)))))))))
+L1 Distance:   2.8889
+
+SQL File: 21a.sql
+-----------------
+Tables (9): movie_info, link_type, movie_link, title, movie_keyword, keyword, movie_companies, company_type, company_name
+Compass Plan:  (((movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))) ⨝ company_name)) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (company_name ⨝ (title ⨝ (movie_link ⨝ link_type))))))))
+L1 Distance:   3.5556
+
+SQL File: 21b.sql
+-----------------
+Tables (9): movie_info, link_type, movie_link, title, movie_keyword, keyword, movie_companies, company_type, company_name
+Compass Plan:  (((movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))) ⨝ company_name)) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (company_name ⨝ (title ⨝ (movie_link ⨝ link_type))))))))
+L1 Distance:   3.5556
+
+SQL File: 21c.sql
+-----------------
+Tables (9): movie_info, link_type, movie_link, title, movie_keyword, keyword, movie_companies, company_type, company_name
+Compass Plan:  (((movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))) ⨝ company_name)) ⨝ ((((link_type ⨝ movie_link) ⨝ title) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title))) ⨝ ((movie_companies ⨝ company_type) ⨝ ((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ ((link_type ⨝ movie_link) ⨝ title)))))))
+Postgres Plan: (movie_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (company_name ⨝ (title ⨝ (movie_link ⨝ link_type))))))))
+L1 Distance:   3.3333
+
+SQL File: 22a.sql
+-----------------
+Tables (10): kind_type, title, info_type, movie_info, movie_info_idx, movie_keyword, company_type, movie_companies, company_name, keyword
+Compass Plan:  (((((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ (((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))))) ⨝ (keyword ⨝ (((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ (company_type ⨝ keyword))))))))))
+L1 Distance:   2.6000
+
+SQL File: 22b.sql
+-----------------
+Tables (10): kind_type, title, info_type, movie_info, movie_info_idx, movie_keyword, company_type, movie_companies, company_name, keyword
+Compass Plan:  (((((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ (((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))))) ⨝ (keyword ⨝ (((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ (company_type ⨝ keyword))))))))))
+L1 Distance:   2.6000
+
+SQL File: 22c.sql
+-----------------
+Tables (10): kind_type, title, info_type, movie_info, movie_info_idx, movie_keyword, company_type, movie_companies, company_name, keyword
+Compass Plan:  (((((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ (((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))))) ⨝ (keyword ⨝ (((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ (company_type ⨝ keyword))))))))))
+L1 Distance:   2.6000
+
+SQL File: 22d.sql
+-----------------
+Tables (10): kind_type, title, info_type, movie_info, movie_info_idx, movie_keyword, company_type, movie_companies, company_name, keyword
+Compass Plan:  (((((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ (((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))))) ⨝ (keyword ⨝ (((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((((movie_keyword ⨝ (company_type ⨝ movie_companies)) ⨝ ((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))) ⨝ ((company_name ⨝ (movie_keyword ⨝ (company_type ⨝ movie_companies))) ⨝ (((kind_type ⨝ title) ⨝ (info_type ⨝ movie_info)) ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)))))))
+Postgres Plan: (movie_companies ⨝ (movie_keyword ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (keyword ⨝ (company_name ⨝ company_type))))))))))
+L1 Distance:   2.8000
+
+SQL File: 23a.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 23b.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 23c.sql
+-----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 24a.sql
+-----------------
+Tables (12): title, movie_companies, movie_keyword, info_type, movie_info, role_type, cast_info, name, aka_name, char_name, keyword, company_name
+Compass Plan:  ((((title ⨝ movie_companies) ⨝ movie_keyword) ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ (((name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ (char_name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name))) ⨝ (keyword ⨝ ((title ⨝ movie_companies) ⨝ ((title ⨝ movie_companies) ⨝ movie_keyword)))))) ⨝ (((company_name ⨝ ((title ⨝ movie_companies) ⨝ ((title ⨝ movie_companies) ⨝ movie_keyword))) ⨝ (((title ⨝ movie_companies) ⨝ movie_keyword) ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ (((name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ (char_name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name))) ⨝ (keyword ⨝ ((title ⨝ movie_companies) ⨝ ((title ⨝ movie_companies) ⨝ movie_keyword))))))) ⨝ (((name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ (char_name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name))) ⨝ (keyword ⨝ ((title ⨝ movie_companies) ⨝ ((title ⨝ movie_companies) ⨝ movie_keyword))))))
+Postgres Plan: (movie_companies ⨝ (aka_name ⨝ (movie_info ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (info_type ⨝ (role_type ⨝ (title ⨝ (char_name ⨝ (name ⨝ company_name)))))))))))
+L1 Distance:   3.0000
+
+SQL File: 24b.sql
+-----------------
+Tables (12): title, movie_companies, movie_keyword, info_type, movie_info, role_type, cast_info, name, aka_name, char_name, keyword, company_name
+Compass Plan:  ((((title ⨝ movie_companies) ⨝ movie_keyword) ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ (((name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ (char_name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name))) ⨝ (keyword ⨝ ((title ⨝ movie_companies) ⨝ ((title ⨝ movie_companies) ⨝ movie_keyword)))))) ⨝ (((company_name ⨝ ((title ⨝ movie_companies) ⨝ ((title ⨝ movie_companies) ⨝ movie_keyword))) ⨝ (((title ⨝ movie_companies) ⨝ movie_keyword) ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ (((name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ (char_name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name))) ⨝ (keyword ⨝ ((title ⨝ movie_companies) ⨝ ((title ⨝ movie_companies) ⨝ movie_keyword))))))) ⨝ (((name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ (char_name ⨝ (((info_type ⨝ movie_info) ⨝ (role_type ⨝ cast_info)) ⨝ aka_name))) ⨝ (keyword ⨝ ((title ⨝ movie_companies) ⨝ ((title ⨝ movie_companies) ⨝ movie_keyword))))))
+Postgres Plan: (movie_companies ⨝ (aka_name ⨝ (cast_info ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (info_type ⨝ (char_name ⨝ (title ⨝ (name ⨝ (company_name ⨝ role_type)))))))))))
+L1 Distance:   3.5000
+
+SQL File: 25a.sql
+-----------------
+Tables (8): title, info_type, movie_info, movie_info_idx, movie_keyword, cast_info, name, keyword
+Compass Plan:  ((((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword) ⨝ cast_info) ⨝ ((((name ⨝ (((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword) ⨝ cast_info)) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword))))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword)))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword))))))
+Postgres Plan: (movie_keyword ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ (keyword ⨝ title))))))))
+L1 Distance:   2.5000
+
+SQL File: 25b.sql
+-----------------
+Tables (8): title, info_type, movie_info, movie_info_idx, movie_keyword, cast_info, name, keyword
+Compass Plan:  ((((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword) ⨝ cast_info) ⨝ ((((name ⨝ (((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword) ⨝ cast_info)) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword))))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword)))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword))))))
+Postgres Plan: (movie_keyword ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (keyword ⨝ name))))))))
+L1 Distance:   2.2500
+
+SQL File: 25c.sql
+-----------------
+Tables (8): title, info_type, movie_info, movie_info_idx, movie_keyword, cast_info, name, keyword
+Compass Plan:  ((((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword) ⨝ cast_info) ⨝ ((((name ⨝ (((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword) ⨝ cast_info)) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword))))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword)))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (((info_type ⨝ movie_info) ⨝ (title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx))) ⨝ (keyword ⨝ ((title ⨝ ((info_type ⨝ movie_info) ⨝ movie_info_idx)) ⨝ movie_keyword))))))
+Postgres Plan: (movie_keyword ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ (keyword ⨝ title))))))))
+L1 Distance:   2.5000
+
+SQL File: 26a.sql
+-----------------
+Tables (11): keyword, kind_type, title, movie_keyword, info_type, movie_info_idx, comp_cast_type, complete_cast, char_name, name, cast_info
+Compass Plan:  ((keyword ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (char_name ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((name ⨝ cast_info) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)))) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)))))))
+Postgres Plan: (movie_keyword ⨝ (cast_info ⨝ (movie_info_idx ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (char_name ⨝ (name ⨝ keyword)))))))))))
+L1 Distance:   3.8182
+
+SQL File: 26b.sql
+-----------------
+Tables (11): keyword, kind_type, title, movie_keyword, info_type, movie_info_idx, comp_cast_type, complete_cast, char_name, name, cast_info
+Compass Plan:  ((keyword ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (char_name ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((name ⨝ cast_info) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)))) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)))))))
+Postgres Plan: (movie_keyword ⨝ (cast_info ⨝ (movie_info_idx ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (name ⨝ (keyword ⨝ char_name)))))))))))
+L1 Distance:   4.0000
+
+SQL File: 26c.sql
+-----------------
+Tables (11): keyword, kind_type, title, movie_keyword, info_type, movie_info_idx, comp_cast_type, complete_cast, char_name, name, cast_info
+Compass Plan:  ((keyword ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (char_name ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((name ⨝ cast_info) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)))) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ ((((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((kind_type ⨝ title) ⨝ movie_keyword) ⨝ (info_type ⨝ movie_info_idx)))))))
+Postgres Plan: (movie_keyword ⨝ (cast_info ⨝ (movie_info_idx ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (name ⨝ (keyword ⨝ char_name)))))))))))
+L1 Distance:   4.0000
+
+SQL File: 27a.sql
+-----------------
+Tables (11): link_type, movie_link, movie_keyword, keyword, movie_info, title, comp_cast_type, complete_cast, movie_companies, company_type, company_name
+Compass Plan:  ((((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (movie_info ⨝ title)) ⨝ (((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ company_name)) ⨝ ((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (movie_info ⨝ title)) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (movie_link ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (company_name ⨝ (company_type ⨝ (link_type ⨝ comp_cast_type)))))))))))
+L1 Distance:   2.7273
+
+SQL File: 27b.sql
+-----------------
+Tables (11): link_type, movie_link, movie_keyword, keyword, movie_info, title, comp_cast_type, complete_cast, movie_companies, company_type, company_name
+Compass Plan:  ((((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (movie_info ⨝ title)) ⨝ (((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ company_name)) ⨝ ((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (movie_info ⨝ title)) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_type ⨝ (company_name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (movie_link ⨝ (link_type ⨝ comp_cast_type)))))))))))
+L1 Distance:   3.6364
+
+SQL File: 27c.sql
+-----------------
+Tables (11): link_type, movie_link, movie_keyword, keyword, movie_info, title, comp_cast_type, complete_cast, movie_companies, company_type, company_name
+Compass Plan:  ((((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (movie_info ⨝ title)) ⨝ (((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ company_name)) ⨝ ((((((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (movie_info ⨝ title)) ⨝ ((((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((movie_companies ⨝ company_type) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((link_type ⨝ movie_link) ⨝ (((movie_keyword ⨝ keyword) ⨝ (movie_info ⨝ title)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))
+Postgres Plan: (movie_keyword ⨝ (keyword ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (movie_companies ⨝ (company_name ⨝ (movie_info ⨝ (movie_link ⨝ (company_type ⨝ (title ⨝ link_type)))))))))))
+L1 Distance:   4.0000
+
+SQL File: 28a.sql
+-----------------
+Tables (12): kind_type, title, movie_keyword, info_type, movie_info_idx, comp_cast_type, complete_cast, movie_info, company_name, company_type, movie_companies, keyword
+Compass Plan:  ((((((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((keyword ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies)))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((keyword ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies)))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (movie_info_idx ⨝ (info_type ⨝ (info_type ⨝ (company_name ⨝ (company_type ⨝ (title ⨝ (kind_type ⨝ (keyword ⨝ (complete_cast ⨝ (comp_cast_type ⨝ comp_cast_type)))))))))))))
+L1 Distance:   4.1667
+
+SQL File: 28b.sql
+-----------------
+Tables (12): kind_type, title, movie_keyword, info_type, movie_info_idx, comp_cast_type, complete_cast, movie_info, company_name, company_type, movie_companies, keyword
+Compass Plan:  ((((((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((keyword ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies)))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((keyword ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies)))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (movie_info ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (info_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_type ⨝ (comp_cast_type ⨝ (keyword ⨝ company_name)))))))))))))
+L1 Distance:   3.3333
+
+SQL File: 28c.sql
+-----------------
+Tables (12): kind_type, title, movie_keyword, info_type, movie_info_idx, comp_cast_type, complete_cast, movie_info, company_name, company_type, movie_companies, keyword
+Compass Plan:  ((((((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((keyword ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies)))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((keyword ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies)))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (((((info_type ⨝ movie_info_idx) ⨝ movie_info) ⨝ (((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (company_type ⨝ movie_companies))) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ ((kind_type ⨝ title) ⨝ ((movie_keyword ⨝ (info_type ⨝ movie_info_idx)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (movie_info ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (info_type ⨝ (company_name ⨝ (keyword ⨝ company_type)))))))))))))
+L1 Distance:   3.3333
+
+SQL File: 29a.sql
+-----------------
+Tables (15): title, info_type, movie_info, movie_keyword, name, person_info, char_name, role_type, cast_info, aka_name, company_name, movie_companies, comp_cast_type, complete_cast, keyword
+Compass Plan:  ((((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword)))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))) ⨝ (((((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (name ⨝ ((info_type ⨝ movie_info) ⨝ person_info))))
+Postgres Plan: (movie_companies ⨝ (aka_name ⨝ (person_info ⨝ (info_type ⨝ (cast_info ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (info_type ⨝ (title ⨝ (char_name ⨝ (role_type ⨝ (name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (company_name ⨝ comp_cast_type))))))))))))))))
+L1 Distance:   4.5333
+
+SQL File: 29b.sql
+-----------------
+Tables (15): title, info_type, movie_info, movie_keyword, name, person_info, char_name, role_type, cast_info, aka_name, company_name, movie_companies, comp_cast_type, complete_cast, keyword
+Compass Plan:  ((((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword)))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))) ⨝ (((((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (name ⨝ ((info_type ⨝ movie_info) ⨝ person_info))))
+Postgres Plan: (person_info ⨝ (movie_keyword ⨝ (aka_name ⨝ (movie_companies ⨝ (movie_info ⨝ (cast_info ⨝ (role_type ⨝ (info_type ⨝ (title ⨝ (char_name ⨝ (name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (company_name ⨝ keyword))))))))))))))))
+L1 Distance:   3.7333
+
+SQL File: 29c.sql
+-----------------
+Tables (15): title, info_type, movie_info, movie_keyword, name, person_info, char_name, role_type, cast_info, aka_name, company_name, movie_companies, comp_cast_type, complete_cast, keyword
+Compass Plan:  ((((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword)))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))))) ⨝ (((((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((name ⨝ ((info_type ⨝ movie_info) ⨝ person_info)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((char_name ⨝ (role_type ⨝ cast_info)) ⨝ aka_name)) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((company_name ⨝ movie_companies) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (name ⨝ ((info_type ⨝ movie_info) ⨝ person_info))))
+Postgres Plan: (movie_companies ⨝ (movie_info ⨝ (aka_name ⨝ (person_info ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (role_type ⨝ (name ⨝ (info_type ⨝ (title ⨝ (char_name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ company_name))))))))))))))))
+L1 Distance:   4.5333
+
+SQL File: 2a.sql
+----------------
+Tables (5): company_name, movie_companies, title, movie_keyword, keyword
+Compass Plan:  (((company_name ⨝ movie_companies) ⨝ title) ⨝ (((company_name ⨝ movie_companies) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))
+Postgres Plan: (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_name ⨝ title))))
+L1 Distance:   2.0000
+
+SQL File: 2b.sql
+----------------
+Tables (5): company_name, movie_companies, title, movie_keyword, keyword
+Compass Plan:  (((company_name ⨝ movie_companies) ⨝ title) ⨝ (((company_name ⨝ movie_companies) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))
+Postgres Plan: (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_name ⨝ title))))
+L1 Distance:   2.0000
+
+SQL File: 2c.sql
+----------------
+Tables (5): company_name, movie_companies, title, movie_keyword, keyword
+Compass Plan:  (((company_name ⨝ movie_companies) ⨝ title) ⨝ (((company_name ⨝ movie_companies) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))
+Postgres Plan: (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_name ⨝ title))))
+L1 Distance:   2.0000
+
+SQL File: 2d.sql
+----------------
+Tables (5): company_name, movie_companies, title, movie_keyword, keyword
+Compass Plan:  (((company_name ⨝ movie_companies) ⨝ title) ⨝ (((company_name ⨝ movie_companies) ⨝ title) ⨝ (movie_keyword ⨝ keyword)))
+Postgres Plan: (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ company_name))))
+L1 Distance:   2.0000
+
+SQL File: 30a.sql
+-----------------
+Tables (10): title, info_type, movie_info, movie_keyword, movie_info_idx, name, cast_info, comp_cast_type, complete_cast, keyword
+Compass Plan:  (((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))))
+Postgres Plan: (movie_keyword ⨝ (cast_info ⨝ (movie_info ⨝ (movie_info_idx ⨝ (info_type ⨝ (info_type ⨝ (title ⨝ (name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (keyword ⨝ comp_cast_type)))))))))))
+L1 Distance:   2.0000
+
+SQL File: 30b.sql
+-----------------
+Tables (10): title, info_type, movie_info, movie_keyword, movie_info_idx, name, cast_info, comp_cast_type, complete_cast, keyword
+Compass Plan:  (((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))))
+Postgres Plan: (cast_info ⨝ (movie_info_idx ⨝ (movie_keyword ⨝ (movie_info ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (info_type ⨝ (keyword ⨝ (comp_cast_type ⨝ name)))))))))))
+L1 Distance:   3.4000
+
+SQL File: 30c.sql
+-----------------
+Tables (10): title, info_type, movie_info, movie_keyword, movie_info_idx, name, cast_info, comp_cast_type, complete_cast, keyword
+Compass Plan:  (((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ (((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))) ⨝ (((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast)))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))) ⨝ ((((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ ((comp_cast_type ⨝ complete_cast) ⨝ (comp_cast_type ⨝ complete_cast))))))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (movie_info_idx ⨝ (movie_info ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (info_type ⨝ (title ⨝ (keyword ⨝ name)))))))))))
+L1 Distance:   3.4000
+
+SQL File: 31a.sql
+-----------------
+Tables (10): title, info_type, movie_info, movie_keyword, movie_info_idx, name, cast_info, company_name, movie_companies, keyword
+Compass Plan:  (((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))) ⨝ (((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ (((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ (company_name ⨝ (title ⨝ keyword))))))))))
+L1 Distance:   2.8000
+
+SQL File: 31b.sql
+-----------------
+Tables (10): title, info_type, movie_info, movie_keyword, movie_info_idx, name, cast_info, company_name, movie_companies, keyword
+Compass Plan:  (((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))) ⨝ (((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ (((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))))
+Postgres Plan: (movie_keyword ⨝ (cast_info ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_name ⨝ (title ⨝ (keyword ⨝ name))))))))))
+L1 Distance:   3.2000
+
+SQL File: 31c.sql
+-----------------
+Tables (10): title, info_type, movie_info, movie_keyword, movie_info_idx, name, cast_info, company_name, movie_companies, keyword
+Compass Plan:  (((((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))) ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))) ⨝ (((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ (((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))))) ⨝ ((((title ⨝ (info_type ⨝ movie_info)) ⨝ (((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies))))) ⨝ ((((info_type ⨝ movie_info) ⨝ movie_info_idx) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))) ⨝ ((((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)) ⨝ (keyword ⨝ ((title ⨝ (info_type ⨝ movie_info)) ⨝ movie_keyword))) ⨝ ((name ⨝ cast_info) ⨝ (company_name ⨝ movie_companies)))))))
+Postgres Plan: (movie_keyword ⨝ (movie_companies ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_name ⨝ (title ⨝ (keyword ⨝ name))))))))))
+L1 Distance:   3.2000
+
+SQL File: 32a.sql
+-----------------
+Tables (5): link_type, movie_link, title, movie_keyword, keyword
+Compass Plan:  (((link_type ⨝ movie_link) ⨝ title) ⨝ (((movie_keyword ⨝ keyword) ⨝ ((link_type ⨝ movie_link) ⨝ title)) ⨝ ((movie_keyword ⨝ keyword) ⨝ ((link_type ⨝ movie_link) ⨝ title))))
+Postgres Plan: (movie_keyword ⨝ (keyword ⨝ (movie_link ⨝ (link_type ⨝ (title ⨝ title)))))
+L1 Distance:   2.4000
+
+SQL File: 32b.sql
+-----------------
+Tables (5): link_type, movie_link, title, movie_keyword, keyword
+Compass Plan:  (((link_type ⨝ movie_link) ⨝ title) ⨝ (((movie_keyword ⨝ keyword) ⨝ ((link_type ⨝ movie_link) ⨝ title)) ⨝ ((movie_keyword ⨝ keyword) ⨝ ((link_type ⨝ movie_link) ⨝ title))))
+Postgres Plan: (movie_keyword ⨝ (keyword ⨝ (movie_link ⨝ (link_type ⨝ (title ⨝ title)))))
+L1 Distance:   2.4000
+
+SQL File: 33a.sql
+-----------------
+Tables (8): kind_type, title, link_type, movie_link, movie_companies, info_type, movie_info_idx, company_name
+Compass Plan:  ((((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))))) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))))))) ⨝ (((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ ((company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))))))
+Postgres Plan: (movie_companies ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (movie_info_idx ⨝ (info_type ⨝ (movie_link ⨝ (link_type ⨝ (title ⨝ (kind_type ⨝ (kind_type ⨝ (company_name ⨝ (company_name ⨝ (title ⨝ info_type)))))))))))))
+L1 Distance:   3.0000
+
+SQL File: 33b.sql
+-----------------
+Tables (8): kind_type, title, link_type, movie_link, movie_companies, info_type, movie_info_idx, company_name
+Compass Plan:  ((((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))))) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))))))) ⨝ (((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ ((company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))))))
+Postgres Plan: (movie_companies ⨝ (movie_info_idx ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (info_type ⨝ (info_type ⨝ (movie_link ⨝ (company_name ⨝ (title ⨝ (kind_type ⨝ (kind_type ⨝ (title ⨝ (link_type ⨝ company_name)))))))))))))
+L1 Distance:   3.7500
+
+SQL File: 33c.sql
+-----------------
+Tables (8): kind_type, title, link_type, movie_link, movie_companies, info_type, movie_info_idx, company_name
+Compass Plan:  ((((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))))) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))))))) ⨝ (((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ ((company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ ((((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))) ⨝ (((info_type ⨝ movie_info_idx) ⨝ (info_type ⨝ movie_info_idx)) ⨝ (company_name ⨝ (((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies) ⨝ ((((kind_type ⨝ title) ⨝ (kind_type ⨝ title)) ⨝ (link_type ⨝ movie_link)) ⨝ movie_companies)))))))))
+Postgres Plan: (movie_companies ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (movie_info_idx ⨝ (info_type ⨝ (movie_link ⨝ (link_type ⨝ (title ⨝ (title ⨝ (kind_type ⨝ (kind_type ⨝ (info_type ⨝ (company_name ⨝ company_name)))))))))))))
+L1 Distance:   3.0000
+
+SQL File: 3a.sql
+----------------
+Tables (4): keyword, title, movie_info, movie_keyword
+Compass Plan:  ((keyword ⨝ ((title ⨝ movie_info) ⨝ movie_keyword)) ⨝ (title ⨝ movie_info))
+Postgres Plan: (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ title)))
+L1 Distance:   2.0000
+
+SQL File: 3b.sql
+----------------
+Tables (4): keyword, title, movie_info, movie_keyword
+Compass Plan:  ((keyword ⨝ ((title ⨝ movie_info) ⨝ movie_keyword)) ⨝ (title ⨝ movie_info))
+Postgres Plan: (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ title)))
+L1 Distance:   2.0000
+
+SQL File: 3c.sql
+----------------
+Tables (4): keyword, title, movie_info, movie_keyword
+Compass Plan:  ((keyword ⨝ ((title ⨝ movie_info) ⨝ movie_keyword)) ⨝ (title ⨝ movie_info))
+Postgres Plan: (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ title)))
+L1 Distance:   2.0000
+
+SQL File: 4a.sql
+----------------
+Tables (5): title, info_type, movie_info_idx, keyword, movie_keyword
+Compass Plan:  (((title ⨝ (info_type ⨝ movie_info_idx)) ⨝ (keyword ⨝ movie_keyword)) ⨝ (title ⨝ (info_type ⨝ movie_info_idx)))
+Postgres Plan: (movie_info_idx ⨝ (info_type ⨝ (movie_keyword ⨝ (keyword ⨝ title))))
+L1 Distance:   1.6000
+
+SQL File: 4b.sql
+----------------
+Tables (5): title, info_type, movie_info_idx, keyword, movie_keyword
+Compass Plan:  (((title ⨝ (info_type ⨝ movie_info_idx)) ⨝ (keyword ⨝ movie_keyword)) ⨝ (title ⨝ (info_type ⨝ movie_info_idx)))
+Postgres Plan: (movie_keyword ⨝ (movie_info_idx ⨝ (info_type ⨝ (keyword ⨝ title))))
+L1 Distance:   2.0000
+
+SQL File: 4c.sql
+----------------
+Tables (5): title, info_type, movie_info_idx, keyword, movie_keyword
+Compass Plan:  (((title ⨝ (info_type ⨝ movie_info_idx)) ⨝ (keyword ⨝ movie_keyword)) ⨝ (title ⨝ (info_type ⨝ movie_info_idx)))
+Postgres Plan: (movie_info_idx ⨝ (info_type ⨝ (movie_keyword ⨝ (keyword ⨝ title))))
+L1 Distance:   1.6000
+
+SQL File: 5a.sql
+----------------
+Tables (5): title, company_type, movie_companies, info_type, movie_info
+Compass Plan:  ((title ⨝ (company_type ⨝ movie_companies)) ⨝ ((title ⨝ (company_type ⨝ movie_companies)) ⨝ (info_type ⨝ movie_info)))
+Postgres Plan: (movie_info ⨝ (movie_companies ⨝ (company_type ⨝ (title ⨝ info_type))))
+L1 Distance:   2.0000
+
+SQL File: 5b.sql
+----------------
+Tables (5): title, company_type, movie_companies, info_type, movie_info
+Compass Plan:  ((title ⨝ (company_type ⨝ movie_companies)) ⨝ ((title ⨝ (company_type ⨝ movie_companies)) ⨝ (info_type ⨝ movie_info)))
+Postgres Plan: (movie_info ⨝ (movie_companies ⨝ (company_type ⨝ (title ⨝ info_type))))
+L1 Distance:   2.0000
+
+SQL File: 5c.sql
+----------------
+Tables (5): title, company_type, movie_companies, info_type, movie_info
+Compass Plan:  ((title ⨝ (company_type ⨝ movie_companies)) ⨝ ((title ⨝ (company_type ⨝ movie_companies)) ⨝ (info_type ⨝ movie_info)))
+Postgres Plan: (movie_info ⨝ (movie_companies ⨝ (company_type ⨝ (title ⨝ info_type))))
+L1 Distance:   2.0000
+
+SQL File: 6a.sql
+----------------
+Tables (5): title, keyword, movie_keyword, name, cast_info
+Compass Plan:  ((title ⨝ (keyword ⨝ movie_keyword)) ⨝ (name ⨝ (cast_info ⨝ (title ⨝ (keyword ⨝ movie_keyword)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))
+L1 Distance:   2.0000
+
+SQL File: 6b.sql
+----------------
+Tables (5): title, keyword, movie_keyword, name, cast_info
+Compass Plan:  ((title ⨝ (keyword ⨝ movie_keyword)) ⨝ (name ⨝ (cast_info ⨝ (title ⨝ (keyword ⨝ movie_keyword)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))
+L1 Distance:   2.0000
+
+SQL File: 6c.sql
+----------------
+Tables (5): title, keyword, movie_keyword, name, cast_info
+Compass Plan:  ((title ⨝ (keyword ⨝ movie_keyword)) ⨝ (name ⨝ (cast_info ⨝ (title ⨝ (keyword ⨝ movie_keyword)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))
+L1 Distance:   2.0000
+
+SQL File: 6d.sql
+----------------
+Tables (5): title, keyword, movie_keyword, name, cast_info
+Compass Plan:  ((title ⨝ (keyword ⨝ movie_keyword)) ⨝ (name ⨝ (cast_info ⨝ (title ⨝ (keyword ⨝ movie_keyword)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))
+L1 Distance:   2.0000
+
+SQL File: 6e.sql
+----------------
+Tables (5): title, keyword, movie_keyword, name, cast_info
+Compass Plan:  ((title ⨝ (keyword ⨝ movie_keyword)) ⨝ (name ⨝ (cast_info ⨝ (title ⨝ (keyword ⨝ movie_keyword)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))
+L1 Distance:   2.0000
+
+SQL File: 6f.sql
+----------------
+Tables (5): title, keyword, movie_keyword, name, cast_info
+Compass Plan:  ((title ⨝ (keyword ⨝ movie_keyword)) ⨝ (name ⨝ (cast_info ⨝ (title ⨝ (keyword ⨝ movie_keyword)))))
+Postgres Plan: (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))
+L1 Distance:   2.0000
+
+SQL File: 7a.sql
+----------------
+Tables (8): name, info_type, person_info, aka_name, title, cast_info, link_type, movie_link
+Compass Plan:  (((((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (title ⨝ cast_info))) ⨝ (link_type ⨝ movie_link)) ⨝ ((name ⨝ (info_type ⨝ person_info)) ⨝ (((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (title ⨝ cast_info))))
+Postgres Plan: (cast_info ⨝ (aka_name ⨝ (person_info ⨝ (info_type ⨝ (name ⨝ (movie_link ⨝ (link_type ⨝ title)))))))
+L1 Distance:   2.2500
+
+SQL File: 7b.sql
+----------------
+Tables (8): name, info_type, person_info, aka_name, title, cast_info, link_type, movie_link
+Compass Plan:  (((((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (title ⨝ cast_info))) ⨝ (link_type ⨝ movie_link)) ⨝ ((name ⨝ (info_type ⨝ person_info)) ⨝ (((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (title ⨝ cast_info))))
+Postgres Plan: (cast_info ⨝ (aka_name ⨝ (person_info ⨝ (info_type ⨝ (name ⨝ (movie_link ⨝ (link_type ⨝ title)))))))
+L1 Distance:   2.2500
+
+SQL File: 7c.sql
+----------------
+Tables (8): name, info_type, person_info, aka_name, title, cast_info, link_type, movie_link
+Compass Plan:  (((((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (title ⨝ cast_info))) ⨝ (link_type ⨝ movie_link)) ⨝ ((name ⨝ (info_type ⨝ person_info)) ⨝ (((name ⨝ (info_type ⨝ person_info)) ⨝ aka_name) ⨝ (title ⨝ cast_info))))
+Postgres Plan: (aka_name ⨝ (cast_info ⨝ (person_info ⨝ (info_type ⨝ (name ⨝ (title ⨝ (movie_link ⨝ link_type)))))))
+L1 Distance:   2.0000
+
+SQL File: 8a.sql
+----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 8b.sql
+----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 8c.sql
+----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 8d.sql
+----------------
+Error: The two sub-plan lists have different sizes
+
+SQL File: 9a.sql
+----------------
+Tables (8): aka_name, name, char_name, cast_info, role_type, title, movie_companies, company_name
+Compass Plan:  (((aka_name ⨝ name) ⨝ (char_name ⨝ ((aka_name ⨝ name) ⨝ ((cast_info ⨝ role_type) ⨝ title)))) ⨝ (((cast_info ⨝ role_type) ⨝ title) ⨝ (movie_companies ⨝ company_name)))
+Postgres Plan: (aka_name ⨝ (movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (company_name ⨝ (name ⨝ (char_name ⨝ title)))))))
+L1 Distance:   2.5000
+
+SQL File: 9b.sql
+----------------
+Tables (8): aka_name, name, char_name, cast_info, role_type, title, movie_companies, company_name
+Compass Plan:  (((aka_name ⨝ name) ⨝ (char_name ⨝ ((aka_name ⨝ name) ⨝ ((cast_info ⨝ role_type) ⨝ title)))) ⨝ (((cast_info ⨝ role_type) ⨝ title) ⨝ (movie_companies ⨝ company_name)))
+Postgres Plan: (aka_name ⨝ (movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (char_name ⨝ (company_name ⨝ title)))))))
+L1 Distance:   2.0000
+
+SQL File: 9c.sql
+----------------
+Tables (8): aka_name, name, char_name, cast_info, role_type, title, movie_companies, company_name
+Compass Plan:  (((aka_name ⨝ name) ⨝ (char_name ⨝ ((aka_name ⨝ name) ⨝ ((cast_info ⨝ role_type) ⨝ title)))) ⨝ (((cast_info ⨝ role_type) ⨝ title) ⨝ (movie_companies ⨝ company_name)))
+Postgres Plan: (aka_name ⨝ (movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (company_name ⨝ (char_name ⨝ title)))))))
+L1 Distance:   2.2500
+
+SQL File: 9d.sql
+----------------
+Tables (8): aka_name, name, char_name, cast_info, role_type, title, movie_companies, company_name
+Compass Plan:  (((aka_name ⨝ name) ⨝ (char_name ⨝ ((aka_name ⨝ name) ⨝ ((cast_info ⨝ role_type) ⨝ title)))) ⨝ (((cast_info ⨝ role_type) ⨝ title) ⨝ (movie_companies ⨝ company_name)))
+Postgres Plan: (aka_name ⨝ (movie_companies ⨝ (company_name ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (char_name ⨝ title)))))))
+L1 Distance:   2.5000
+

@@ -1,0 +1,113 @@
+13b.sql, "(movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ company_type))))))))", 8
+3c.sql, "(movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ title)))", 3
+29c.sql, "(movie_companies ⨝ (movie_info ⨝ (aka_name ⨝ (person_info ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (role_type ⨝ (name ⨝ (info_type ⨝ (title ⨝ (char_name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ company_name))))))))))))))))", 16
+29b.sql, "(person_info ⨝ (movie_keyword ⨝ (aka_name ⨝ (movie_companies ⨝ (movie_info ⨝ (cast_info ⨝ (role_type ⨝ (info_type ⨝ (title ⨝ (char_name ⨝ (name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (company_name ⨝ keyword))))))))))))))))", 16
+25a.sql, "(movie_keyword ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ (keyword ⨝ title))))))))", 8
+33a.sql, "(movie_companies ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (movie_info_idx ⨝ (info_type ⨝ (movie_link ⨝ (link_type ⨝ (title ⨝ (kind_type ⨝ (kind_type ⨝ (company_name ⨝ (company_name ⨝ (title ⨝ info_type)))))))))))))", 13
+3b.sql, "(movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ title)))", 3
+13c.sql, "(movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ company_type))))))))", 8
+13a.sql, "(movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_type ⨝ company_name))))))))", 8
+2d.sql, "(movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ company_name))))", 4
+33c.sql, "(movie_companies ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (movie_info_idx ⨝ (info_type ⨝ (movie_link ⨝ (link_type ⨝ (title ⨝ (title ⨝ (kind_type ⨝ (kind_type ⨝ (info_type ⨝ (company_name ⨝ company_name)))))))))))))", 13
+25c.sql, "(movie_keyword ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ (keyword ⨝ title))))))))", 8
+29a.sql, "(movie_companies ⨝ (aka_name ⨝ (person_info ⨝ (info_type ⨝ (cast_info ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (info_type ⨝ (title ⨝ (char_name ⨝ (role_type ⨝ (name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (company_name ⨝ comp_cast_type))))))))))))))))", 16
+25b.sql, "(movie_keyword ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (keyword ⨝ name))))))))", 8
+33b.sql, "(movie_companies ⨝ (movie_info_idx ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (info_type ⨝ (info_type ⨝ (movie_link ⨝ (company_name ⨝ (title ⨝ (kind_type ⨝ (kind_type ⨝ (title ⨝ (link_type ⨝ company_name)))))))))))))", 13
+3a.sql, "(movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ title)))", 3
+13d.sql, "(movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_type ⨝ company_name))))))))", 8
+2a.sql, "(movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_name ⨝ title))))", 4
+32b.sql, "(movie_keyword ⨝ (keyword ⨝ (movie_link ⨝ (link_type ⨝ (title ⨝ title)))))", 5
+24b.sql, "(movie_companies ⨝ (aka_name ⨝ (cast_info ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (info_type ⨝ (char_name ⨝ (title ⨝ (name ⨝ (company_name ⨝ role_type)))))))))))", 11
+28a.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (movie_info_idx ⨝ (info_type ⨝ (info_type ⨝ (company_name ⨝ (company_type ⨝ (title ⨝ (kind_type ⨝ (keyword ⨝ (complete_cast ⨝ (comp_cast_type ⨝ comp_cast_type)))))))))))))", 13
+12a.sql, "(movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_type ⨝ (company_name ⨝ title)))))))", 7
+12c.sql, "(movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_type ⨝ (company_name ⨝ title)))))))", 7
+2b.sql, "(movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_name ⨝ title))))", 4
+32a.sql, "(movie_keyword ⨝ (keyword ⨝ (movie_link ⨝ (link_type ⨝ (title ⨝ title)))))", 5
+24a.sql, "(movie_companies ⨝ (aka_name ⨝ (movie_info ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (info_type ⨝ (role_type ⨝ (title ⨝ (char_name ⨝ (name ⨝ company_name)))))))))))", 11
+28b.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (movie_info ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (info_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_type ⨝ (comp_cast_type ⨝ (keyword ⨝ company_name)))))))))))))", 13
+28c.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info_idx ⨝ (movie_info ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (info_type ⨝ (company_name ⨝ (keyword ⨝ company_type)))))))))))))", 13
+2c.sql, "(movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_name ⨝ title))))", 4
+12b.sql, "(movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (company_name ⨝ company_type)))))))", 7
+15a.sql, "(aka_title ⨝ (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (company_name ⨝ (company_type ⨝ (title ⨝ keyword))))))))", 8
+9c.sql, "(aka_name ⨝ (movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (company_name ⨝ (char_name ⨝ title)))))))", 7
+19b.sql, "(movie_companies ⨝ (aka_name ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (title ⨝ (char_name ⨝ (company_name ⨝ (name ⨝ role_type)))))))))", 9
+23c.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (company_name ⨝ (title ⨝ (company_type ⨝ (kind_type ⨝ (complete_cast ⨝ (comp_cast_type ⨝ keyword))))))))))", 10
+23b.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (company_name ⨝ (title ⨝ (kind_type ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (company_type ⨝ keyword))))))))))", 10
+5a.sql, "(movie_info ⨝ (movie_companies ⨝ (company_type ⨝ (title ⨝ info_type))))", 4
+19c.sql, "(aka_name ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (title ⨝ (company_name ⨝ char_name)))))))))", 9
+9b.sql, "(aka_name ⨝ (movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (char_name ⨝ (company_name ⨝ title)))))))", 7
+15b.sql, "(movie_keyword ⨝ (movie_companies ⨝ (aka_title ⨝ (movie_info ⨝ (info_type ⨝ (company_name ⨝ (company_type ⨝ (title ⨝ keyword))))))))", 8
+8d.sql, "(cast_info ⨝ (role_type ⨝ (title ⨝ (movie_companies ⨝ (company_name ⨝ (name ⨝ aka_name))))))", 6
+19a.sql, "(aka_name ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (char_name ⨝ (company_name ⨝ title)))))))))", 9
+5c.sql, "(movie_info ⨝ (movie_companies ⨝ (company_type ⨝ (title ⨝ info_type))))", 4
+22d.sql, "(movie_companies ⨝ (movie_keyword ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (keyword ⨝ (company_name ⨝ company_type))))))))))", 10
+23a.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (company_type ⨝ keyword))))))))))", 10
+5b.sql, "(movie_info ⨝ (movie_companies ⨝ (company_type ⨝ (title ⨝ info_type))))", 4
+9a.sql, "(aka_name ⨝ (movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (company_name ⨝ (name ⨝ (char_name ⨝ title)))))))", 7
+15c.sql, "(aka_title ⨝ (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (company_name ⨝ (title ⨝ (company_type ⨝ keyword))))))))", 8
+8a.sql, "(aka_name ⨝ (movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (company_name ⨝ (name ⨝ title))))))", 6
+14c.sql, "(movie_keyword ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ keyword)))))))", 7
+4b.sql, "(movie_keyword ⨝ (movie_info_idx ⨝ (info_type ⨝ (keyword ⨝ title))))", 4
+19d.sql, "(aka_name ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (title ⨝ (char_name ⨝ company_name)))))))))", 9
+22a.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ (company_type ⨝ keyword))))))))))", 10
+18a.sql, "(cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ title))))))", 6
+4c.sql, "(movie_info_idx ⨝ (info_type ⨝ (movie_keyword ⨝ (keyword ⨝ title))))", 4
+14b.sql, "(movie_keyword ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (keyword ⨝ kind_type)))))))", 7
+9d.sql, "(aka_name ⨝ (movie_companies ⨝ (company_name ⨝ (cast_info ⨝ (role_type ⨝ (name ⨝ (char_name ⨝ title)))))))", 7
+8b.sql, "(aka_name ⨝ (cast_info ⨝ (role_type ⨝ (movie_companies ⨝ (name ⨝ (company_name ⨝ title))))))", 6
+15d.sql, "(aka_title ⨝ (movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (title ⨝ (company_name ⨝ (company_type ⨝ keyword))))))))", 8
+4a.sql, "(movie_info_idx ⨝ (info_type ⨝ (movie_keyword ⨝ (keyword ⨝ title))))", 4
+18c.sql, "(cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ title))))))", 6
+22b.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ (company_type ⨝ keyword))))))))))", 10
+22c.sql, "(movie_keyword ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (company_name ⨝ (company_type ⨝ keyword))))))))))", 10
+18b.sql, "(cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ title))))))", 6
+14a.sql, "(movie_keyword ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ keyword)))))))", 7
+8c.sql, "(cast_info ⨝ (role_type ⨝ (title ⨝ (movie_companies ⨝ (company_name ⨝ (name ⨝ aka_name))))))", 6
+16d.sql, "(aka_name ⨝ (cast_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_name ⨝ name)))))))", 7
+6e.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))", 4
+7a.sql, "(cast_info ⨝ (aka_name ⨝ (person_info ⨝ (info_type ⨝ (name ⨝ (movie_link ⨝ (link_type ⨝ title)))))))", 7
+21b.sql, "(movie_companies ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (company_name ⨝ (title ⨝ (movie_link ⨝ link_type))))))))", 8
+21c.sql, "(movie_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (company_name ⨝ (title ⨝ (movie_link ⨝ link_type))))))))", 8
+6d.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))", 4
+17a.sql, "(cast_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_name ⨝ name))))))", 6
+17c.sql, "(movie_companies ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (name ⨝ (company_name ⨝ title))))))", 6
+7b.sql, "(cast_info ⨝ (aka_name ⨝ (person_info ⨝ (info_type ⨝ (name ⨝ (movie_link ⨝ (link_type ⨝ title)))))))", 7
+6f.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))", 4
+21a.sql, "(movie_companies ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (company_name ⨝ (title ⨝ (movie_link ⨝ link_type))))))))", 8
+7c.sql, "(aka_name ⨝ (cast_info ⨝ (person_info ⨝ (info_type ⨝ (name ⨝ (title ⨝ (movie_link ⨝ link_type)))))))", 7
+17b.sql, "(movie_companies ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (name ⨝ (company_name ⨝ title))))))", 6
+17f.sql, "(movie_companies ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (name ⨝ company_name))))))", 6
+16b.sql, "(aka_name ⨝ (cast_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_name ⨝ name)))))))", 7
+6c.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))", 4
+20a.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (kind_type ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (char_name ⨝ name)))))))))", 9
+6b.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))", 4
+16c.sql, "(aka_name ⨝ (cast_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_name ⨝ name)))))))", 7
+16a.sql, "(aka_name ⨝ (cast_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_name ⨝ name)))))))", 7
+17e.sql, "(cast_info ⨝ (movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_name ⨝ name))))))", 6
+20c.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (kind_type ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (char_name ⨝ name)))))))))", 9
+20b.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (kind_type ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (name ⨝ char_name)))))))))", 9
+6a.sql, "(cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ name))))", 4
+17d.sql, "(movie_companies ⨝ (cast_info ⨝ (movie_keyword ⨝ (keyword ⨝ (name ⨝ (company_name ⨝ title))))))", 6
+11c.sql, "(movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (company_name ⨝ (title ⨝ (movie_link ⨝ link_type)))))))", 7
+1b.sql, "(movie_companies ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_type ⨝ title))))", 4
+31a.sql, "(movie_keyword ⨝ (movie_companies ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (name ⨝ (company_name ⨝ (title ⨝ keyword))))))))))", 10
+27a.sql, "(movie_companies ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (movie_link ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (company_name ⨝ (company_type ⨝ (link_type ⨝ comp_cast_type)))))))))))", 11
+1c.sql, "(movie_info_idx ⨝ (info_type ⨝ (movie_companies ⨝ (company_type ⨝ title))))", 4
+11b.sql, "(title ⨝ (movie_companies ⨝ (movie_keyword ⨝ (movie_link ⨝ (link_type ⨝ (company_name ⨝ (company_type ⨝ keyword)))))))", 7
+1a.sql, "(movie_info_idx ⨝ (info_type ⨝ (movie_companies ⨝ (company_type ⨝ title))))", 4
+31b.sql, "(movie_keyword ⨝ (cast_info ⨝ (movie_companies ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_name ⨝ (title ⨝ (keyword ⨝ name))))))))))", 10
+27b.sql, "(movie_companies ⨝ (movie_info ⨝ (movie_keyword ⨝ (keyword ⨝ (title ⨝ (company_type ⨝ (company_name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (movie_link ⨝ (link_type ⨝ comp_cast_type)))))))))))", 11
+27c.sql, "(movie_keyword ⨝ (keyword ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (movie_companies ⨝ (company_name ⨝ (movie_info ⨝ (movie_link ⨝ (company_type ⨝ (title ⨝ link_type)))))))))))", 11
+31c.sql, "(movie_keyword ⨝ (movie_companies ⨝ (cast_info ⨝ (movie_info ⨝ (info_type ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_name ⨝ (title ⨝ (keyword ⨝ name))))))))))", 10
+11a.sql, "(movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (company_type ⨝ (title ⨝ (movie_link ⨝ (link_type ⨝ company_name)))))))", 7
+10a.sql, "(movie_companies ⨝ (cast_info ⨝ (role_type ⨝ (company_name ⨝ (title ⨝ (char_name ⨝ company_type))))))", 6
+1d.sql, "(movie_companies ⨝ (movie_info_idx ⨝ (info_type ⨝ (company_type ⨝ title))))", 4
+30c.sql, "(cast_info ⨝ (movie_keyword ⨝ (movie_info_idx ⨝ (movie_info ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (info_type ⨝ (title ⨝ (keyword ⨝ name)))))))))))", 11
+26c.sql, "(movie_keyword ⨝ (cast_info ⨝ (movie_info_idx ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (name ⨝ (keyword ⨝ char_name)))))))))))", 11
+26b.sql, "(movie_keyword ⨝ (cast_info ⨝ (movie_info_idx ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (name ⨝ (keyword ⨝ char_name)))))))))))", 11
+30b.sql, "(cast_info ⨝ (movie_info_idx ⨝ (movie_keyword ⨝ (movie_info ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (info_type ⨝ (keyword ⨝ (comp_cast_type ⨝ name)))))))))))", 11
+11d.sql, "(movie_companies ⨝ (movie_keyword ⨝ (keyword ⨝ (movie_link ⨝ (title ⨝ (link_type ⨝ (company_type ⨝ company_name)))))))", 7
+10b.sql, "(cast_info ⨝ (movie_companies ⨝ (company_name ⨝ (role_type ⨝ (title ⨝ (char_name ⨝ company_type))))))", 6
+26a.sql, "(movie_keyword ⨝ (cast_info ⨝ (movie_info_idx ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (comp_cast_type ⨝ (info_type ⨝ (title ⨝ (kind_type ⨝ (char_name ⨝ (name ⨝ keyword)))))))))))", 11
+30a.sql, "(movie_keyword ⨝ (cast_info ⨝ (movie_info ⨝ (movie_info_idx ⨝ (info_type ⨝ (info_type ⨝ (title ⨝ (name ⨝ (complete_cast ⨝ (comp_cast_type ⨝ (keyword ⨝ comp_cast_type)))))))))))", 11
+10c.sql, "(cast_info ⨝ (role_type ⨝ (title ⨝ (movie_companies ⨝ (company_name ⨝ (company_type ⨝ char_name))))))", 6
