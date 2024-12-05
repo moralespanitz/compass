@@ -2,7 +2,7 @@
 - [x] Cardinalidad
 - [x] Distancia L1
 - [x] Tiempo de Ejecución
-- [x] Porcentaje de Éxito
+- [x] Winning Queries
 
 ## Gráficas
 Las siguientes gráficas se generaron como parte del análisis:
