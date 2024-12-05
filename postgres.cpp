@@ -108,9 +108,9 @@ int main(int argc, char* argv[]) {
     std::cout << "Conexión a PostgreSQL exitosa." << std::endl;
 
     // Abrir el archivo de salida
-    std::ofstream outputFile("./postgres-resultados.txt");
+    std::ofstream outputFile("data/postgres-resultados.txt");
     if (!outputFile.is_open()) {
-        std::cerr << "No se pudo abrir el archivo de salida 'postgres-resultados.txt'" << std::endl;
+        std::cerr << "No se pudo abrir el archivo de salida 'data/postgres-resultados.txt'" << std::endl;
         PQfinish(conn);
         return 1;
     }
@@ -182,6 +182,6 @@ int main(int argc, char* argv[]) {
     outputFile.close();
     PQfinish(conn);
 
-    std::cout << "Procesamiento completado. Resultados guardados en 'postgres-resultados.txt'" << std::endl;
+    std::cout << "Procesamiento completado. Resultados guardados en 'data/postgres-resultados.txt'" << std::endl;
     return 0;
 }

@@ -1,11 +1,11 @@
 import os
 import re
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Paths to the result files
-compass_file_path = 'compass-resultados.txt'
-postgres_file_path = 'postgres-resultados.txt'
-
+from .config import PLOTS_DIR as plots_dir
+from .config import COMPASS_RESULTS as compass_filepath
+from .config import POSTGRES_RESULTS as postgres_filepath
 # Function to parse a resultados.txt file
 def parse_resultados(file_path):
     results = {}
@@ -33,8 +33,8 @@ def parse_resultados(file_path):
     return results
 
 # Parse both files
-compass_results = parse_resultados(compass_file_path)
-postgres_results = parse_resultados(postgres_file_path)
+compass_results = parse_resultados(compass_filepath)
+postgres_results = parse_resultados(postgres_filepath)
 
 # Debugging: Print parsed results
 print("Compass Results:", compass_results)
@@ -80,5 +80,5 @@ plt.xticks(rotation=45, ha='right')
 plt.legend()
 plt.tight_layout()
 # Save the plot as a PNG file
-plt.savefig('runtime.png')
+plt.savefig(os.path.join(plots_dir, 'runtime.png'))
 plt.show()

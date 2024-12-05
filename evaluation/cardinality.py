@@ -1,7 +1,13 @@
-#!/usr/bin/env python3
 import matplotlib.pyplot as plt
 import numpy as np
 from collections import defaultdict
+
+from .config import (
+    COMPASS_RESULTS as compass_filepath,
+    POSTGRES_RESULTS as postgres_filepath,
+    CARDINALITY_COMPARISON_PLOT,
+    CARDINALITY_RATIO_PLOT
+)
 
 def read_intermediate_rows(filename):
     results = {}
@@ -29,7 +35,8 @@ def read_intermediate_rows(filename):
 
 def get_join_count(query_name):
     # Extract join count from query results
-    with open('compass-resultados.txt', 'r') as f:
+    compass_filepath ="/Users/moralespanitz/me/undergraduate/ads/final/compass/data/compass-resultados.txt"
+    with open(compass_filepath, 'r') as f:
         for line in f:
             if query_name in line and '⨝' in line:  # Look for lines with the join symbol
                 # Count the number of join symbols (⨝) in the query
@@ -110,8 +117,8 @@ def plot_join_groups(compass_rows, postgres_rows):
     plt.tight_layout()
     
     # Save plot
-    plt.savefig('join_groups_comparison.png')
-    print("Join groups comparison plot saved as join_groups_comparison.png")
+    plt.savefig(JOIN_GROUPS_PLOT)
+    print(f"Join groups comparison plot saved as {JOIN_GROUPS_PLOT}")
     
     # Print averages
     print("\nAverage Intermediate Rows by Join Groups:")
@@ -127,7 +134,7 @@ def plot_join_groups(compass_rows, postgres_rows):
         print(f"{group.ljust(15)}{int(compass_avg):>15}{int(postgres_avg):>15}"
               f"{compass_count:>15}{postgres_count:>15}")
 
-def plot_comparison(compass_rows, postgres_rows, output_file='cardinality_comparison.png'):
+def plot_comparison(compass_rows, postgres_rows, output_file):
     # Get all unique query names and sort them
     all_queries = sorted(set(compass_rows.keys()) | set(postgres_rows.keys()))
     
@@ -179,12 +186,12 @@ def plot_comparison(compass_rows, postgres_rows, output_file='cardinality_compar
     plt.tight_layout()
     
     # Save ratio plot
-    plt.savefig('cardinality_ratio.png')
-    print("Ratio plot saved as cardinality_ratio.png")
+    plt.savefig(CARDINALITY_RATIO_PLOT)
+    print(f"Ratio plot saved as {CARDINALITY_RATIO_PLOT}")
 
 def main():
-    compass_rows = read_intermediate_rows('compass-resultados.txt')
-    postgres_rows = read_intermediate_rows('postgres-resultados.txt')
+    compass_rows = read_intermediate_rows(compass_filepath)
+    postgres_rows = read_intermediate_rows(postgres_filepath)
     
     print("Comparison of Intermediate Rows:")
     print("Query".ljust(15) + "Compass".rjust(15) + "Postgres".rjust(15) + "Difference".rjust(15) + "Ratio".rjust(10))
@@ -203,8 +210,8 @@ def main():
               f"{str(difference).rjust(15)}{ratio:>10.2f}")
     
     # Generate plots
-    plot_comparison(compass_rows, postgres_rows)
-    plot_join_groups(compass_rows, postgres_rows)
+    plot_comparison(compass_rows, postgres_rows, CARDINALITY_COMPARISON_PLOT)
+    plot_comparison(compass_rows, postgres_rows, CARDINALITY_RATIO_PLOT)
 
 if __name__ == "__main__":
     main()

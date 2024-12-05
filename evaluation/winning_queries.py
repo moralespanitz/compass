@@ -2,7 +2,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from collections import defaultdict
-
+from .config import COMPASS_RESULTS as compass_filepath
+from .config import POSTGRES_RESULTS as postgres_filepath
+from .config import (PLOTS_DIR as plots_dir)
+import os
 def read_results(filename):
     results = {}
     current_query = None
@@ -59,7 +62,7 @@ def analyze_winners(compass_results, postgres_results):
         postgres_rows = postgres_results.get(query, float('inf'))
         
         # Debugging: Print information for 20-28 join queries
-        joins = get_join_count(query, 'compass-resultados.txt')
+        joins = get_join_count(query, compass_filepath)
         if 20 <= joins <= 28:
             print(f"Debug: {query} - Joins: {joins}, Compass Rows: {compass_rows}, PostgreSQL Rows: {postgres_rows}")
         
@@ -93,13 +96,13 @@ def plot_individual_queries(compass_results, postgres_results):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig('individual_queries_analysis.png', dpi=150, bbox_inches='tight')
+    plt.savefig(os.path.join(plots_dir, 'individual_queries_analysis.png'))
     print("Plot saved as individual_queries_analysis.png")
 
 def main():
     # Read results
-    compass_results = read_results('compass-resultados.txt')
-    postgres_results = read_results('postgres-resultados.txt')
+    compass_results = read_results(compass_filepath)
+    postgres_results = read_results(postgres_filepath)
     
     # Analyze winners
     compass_wins, postgres_wins, ties, winning_queries = analyze_winners(compass_results, postgres_results)
@@ -118,12 +121,12 @@ def main():
     # Get wins by join category
     compass_by_joins = categorize_by_joins(
         {q: compass_results[q] for q in winning_queries['compass']},
-        'compass-resultados.txt'
+        compass_filepath
     )
     
     postgres_by_joins = categorize_by_joins(
         {q: postgres_results[q] for q in winning_queries['postgres']},
-        'postgres-resultados.txt'  # Fixed: now using postgres file for postgres queries
+        postgres_filepath
     )
     
     # Print summary
@@ -142,12 +145,12 @@ def main():
     print("\nWinning Queries by System:")
     print("\nCOMPASS wins:")
     for query in sorted(winning_queries['compass']):
-        joins = get_join_count(query, 'compass-resultados.txt')
+        joins = get_join_count(query, compass_filepath)
         print(f"{query}: {joins} joins")
     
     print("\nPostgreSQL wins:")
     for query in sorted(winning_queries['postgres']):
-        joins = get_join_count(query, 'postgres-resultados.txt')
+        joins = get_join_count(query, postgres_filepath)
         print(f"{query}: {joins} joins")
 
     # Plotting total wins
@@ -189,7 +192,7 @@ def main():
                     f'{int(height)}', ha='center', va='bottom')
     
     plt.tight_layout()
-    plt.savefig('winning_queries_analysis.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(plots_dir, 'winning_queries_analysis.png'))
     print("\nAnalysis plot saved as winning_queries_analysis.png")
 
 if __name__ == "__main__":

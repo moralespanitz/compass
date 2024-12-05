@@ -1,4 +1,9 @@
 import numpy as np
+from .config import (
+    COMPASS_RESULTS as compass_file,
+    POSTGRES_RESULTS as postgres_file,
+    L1_DISTANCE_RESULTS as output_file
+)
 
 def extract_tables(join_order):
     """
@@ -113,11 +118,6 @@ def save_results(compass_plans, postgres_plans, output_file):
                 f.write(f"Error: {str(e)}\n\n")
 
 if __name__ == "__main__":
-    # File paths
-    compass_file = "/Users/moralespanitz/me/undergraduate/ads/final/compass/data/compass-resultados.txt"
-    postgres_file = "/Users/moralespanitz/me/undergraduate/ads/final/compass/data/postgres-resultados.txt"
-    output_file = "/Users/moralespanitz/me/undergraduate/ads/final/compass/data/l1-distanceResults.txt"
-    
     # Parse both result files
     compass_plans = parse_results_file(compass_file)
     postgres_plans = parse_results_file(postgres_file)

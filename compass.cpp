@@ -233,7 +233,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Connected to PostgreSQL!" << std::endl;
 
     // Abrir el archivo de salida
-    std::ofstream outputFile("compass-resultados.txt");
+    std::ofstream outputFile("data/compass-resultados.txt");
     if (!outputFile.is_open()) {
         std::cerr << "No se pudo abrir el archivo de salida 'compass-resultados.txt'" << std::endl;
         PQfinish(conn);
@@ -335,6 +335,6 @@ int main(int argc, char* argv[]) {
     outputFile.close();
     PQfinish(conn);
 
-    std::cout << "Procesamiento completado. Resultados guardados en 'compass-resultados.txt'" << std::endl;
+    std::cout << "Procesamiento completado. Resultados guardados en 'data/compass-resultados.txt'" << std::endl;
     return 0;
 }
