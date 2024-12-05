@@ -29,23 +29,20 @@ def read_intermediate_rows(filename):
 
 def get_join_count(query_name):
     # Extract join count from query results
-    with open('postgres-resultados.txt', 'r') as f:
+    with open('compass-resultados.txt', 'r') as f:
         for line in f:
-            if query_name in line and not "Total Intermediate Rows" in line:
-                parts = line.strip().split(',')
-                if len(parts) >= 3:
-                    try:
-                        return int(parts[2].strip())
-                    except ValueError:
-                        continue
+            if query_name in line and '⨝' in line:  # Look for lines with the join symbol
+                # Count the number of join symbols (⨝) in the query
+                join_count = line.count('⨝')
+                return join_count
     return 0
 
 def group_by_joins(rows_dict):
     # Create groups: 4-9 joins, 10-19 joins, 20-28 joins
     groups = {
-        "4-9 joins": defaultdict(list),
-        "10-19 joins": defaultdict(list),
-        "20-28 joins": defaultdict(list)
+        "4-9 joins": {"rows": [], "count": 0},
+        "10-19 joins": {"rows": [], "count": 0},
+        "20-28 joins": {"rows": [], "count": 0}
     }
     
     for query, rows in rows_dict.items():
@@ -92,13 +89,13 @@ def plot_join_groups(compass_rows, postgres_rows):
     plt.bar(x - width/2, compass_avgs, width, label='COMPASS', color='lightblue', alpha=0.8)
     plt.bar(x + width/2, postgres_avgs, width, label='PostgreSQL', color='lightcoral', alpha=0.8)
     
-    # Add counts on top of bars
-    for i, v in enumerate(compass_avgs):
-        plt.text(i - width/2, v, f'Total: {compass_groups[groups[i]]["count"]}', 
-                ha='center', va='bottom')
-    for i, v in enumerate(postgres_avgs):
-        plt.text(i + width/2, v, f'Total: {postgres_groups[groups[i]]["count"]}', 
-                ha='center', va='bottom')
+    # # Add counts on top of bars
+    # for i, v in enumerate(compass_avgs):
+    #     plt.text(i - width/2, v, f'Total: {compass_groups[groups[i]]["count"]}', 
+    #             ha='center', va='bottom')
+    # for i, v in enumerate(postgres_avgs):
+    #     plt.text(i + width/2, v, f'Total: {postgres_groups[groups[i]]["count"]}', 
+    #             ha='center', va='bottom')
     
     # Customize plot
     plt.xlabel('Number of Joins')
